@@ -1,0 +1,271 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Lessons API",
+        "version": "1.0"
+    },
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/v1/lessons": {
+            "get": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Display a listing of Lessons.",
+                "description": "Get All Lessons.",
+                "operationId": "findAll",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Create a new lesson.",
+                "description": "Add Lesson.",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Title & Body",
+                        "in": "body",
+                        "description": "Enter Lesson Data",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LessonModel"
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/lessons/{id}": {
+            "get": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Display a listing of Lessons.",
+                "description": "Get Specific Lesson.",
+                "operationId": "findById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/lessons/update/{id}": {
+            "put": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "update lesson.",
+                "description": "Get Specific Lesson.",
+                "operationId": "findById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "body",
+                        "description": "new title",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "body": {
+                                    "description": "update lesson.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/lessons/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Delete a Lesson.",
+                "description": "Delete Lesson.",
+                "operationId": "findById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Login.",
+                "description": "Login and Get Token.",
+                "operationId": "login",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "User's Credenitals",
+                        "in": "body",
+                        "description": "Enter Email and Password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "LessonModel": {
+            "required": [
+                "title",
+                "body"
+            ],
+            "properties": {
+                "title": {
+                    "description": "title of The Lesson",
+                    "type": "string",
+                    "example": "First Title"
+                },
+                "body": {
+                    "description": "Body of The Lesson",
+                    "type": "string",
+                    "example": "Your Text .."
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "description": "user's Email",
+                    "type": "string",
+                    "example": "johnDoe@Example.com"
+                },
+                "password": {
+                    "description": "User's password",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
