@@ -56,11 +56,4 @@ class logsController extends ApiController
 
     }
 
-
-    public function register(Request $request)
-    {
-
-        User::create(['name', 'email', 'password']);
-        
-    }
 }
