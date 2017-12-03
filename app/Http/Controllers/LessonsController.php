@@ -12,6 +12,13 @@ use App\Http\Controllers\ApiController;
 class LessonsController extends ApiController
 {
 
+	protected $user;
+
+	public function __construct()
+	{
+		$this->user = JWTAuth::parseToken()->authenticate();
+	}
+
 	/**
      * Display a listing of Lessons.
      *
